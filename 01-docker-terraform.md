@@ -54,7 +54,7 @@ docker run -it \
   -p 5432:5432 \
   postgres:13
 
-#PGADMIN
+###PGADMIN
 
 docker run -it \
   -e PGADMIN_DEFAULT_EMAIL="admin@admin.com" \
@@ -65,3 +65,18 @@ docker run -it \
   dpage/pgadmin4
 ``` 
 - Maybe you need to remove the older Container try with: ``` docker rm <container_name_or_id> ``` 
+
+
+After configuring the .py file to run as a image builded with dockerfile we can use this:
+```
+URL="https://d37ci6vzurychx.cloudfront.net/trip-data/yellow_tripdata_2021-01.parquet"
+docker run -it --network=pg-network \
+  taxi_ingest:v001 \
+  --user=root \
+  --password=root \
+  --host=pg-database \
+  --port=5432 \
+  --db=ny_taxi \
+  --table_name=yellow_taxi_trips \
+  --url=${URL}
+```

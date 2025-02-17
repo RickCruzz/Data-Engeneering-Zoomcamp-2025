@@ -1,56 +1,49 @@
-#%%
+import os
 import pandas as pd
-#check version
-pd.__version__
-
-#%%
-# Reading data
-df =  pd.read_parquet("yellow_tripdata_2024-01.parquet")
-
-#%%
-# Connecting to postgres
+from time import time
 from sqlalchemy import create_engine
-engine = create_engine("postgresql://root:root@localhost:5432/ny_taxi")
-engine.connect()
+import argparse
 
-#%%
-#Getting the schema / Create table
-print(pd.io.sql.get_schema(df, name="yellow_taxi_data", con=engine))
+def main(params):
+    t_start = time()
+    user = params.user
+    password = params.password
+    host = params.host
+    port = params.port
+    db = params.db
+    table_name = params.table_name
+    url = params.url
+    
+    parquet_name = "output.parquet"
+    #Download the PARQUET file
+    os.system(f"wget {url} -O {parquet_name}")
 
-#%%
-#Now because the file is already a parquet we dont need to use a iterator as described in course
-#Creating a interator forcing to have 100.000 rows per iteration
-#df_iter =  pd.read_csv("yellow_tripdata_2021-01.csv", iterator=True, chunksize=100000)
 
-#df = next(df_iter)
+    engine = create_engine(f"postgresql://{user}:{password}@{host}:{port}/{db}")
+    df = pd.read_parquet(parquet_name)
+    
+    #Forcing the creation of the table using head
+    df.head(n=0).to_sql(name=table_name, con=engine, if_exists='replace')
 
-#df.tpep_pickup_datetime = pd.to_datetime(df.tpep_pickup_datetime)
-#df.tpep_dropoff_datetime = pd.to_datetime(df.tpep_dropoff_datetime)
+    # Append the Parquet file to database
+    df.to_sql(name=table_name, con=engine, if_exists='append')
+    t_end = time()
+    print("Data Inserted Sucessfully, at took %.3f seconds" % (t_end - t_start))
 
-#Forcing the creation of the table using head(n=0) And do the FIRST insert
-#df.head(n=0).to_sql(name='yellow_taxi_data', con=engine, if_exists='replace')
-#df.to_sql(name='yellow_taxi_data', con=engine, if_exists='append')
 
-#Inserting the rest on a Loop
-#from time import time
-#while True:
-#    t_start = time()
-#    df = next(df_iter)
-#    df.tpep_pickup_datetime = pd.to_datetime(df.tpep_pickup_datetime)
-#    df.tpep_dropoff_datetime = pd.to_datetime(df.tpep_dropoff_datetime)
-#    df.to_sql(name='yellow_taxi_data', con=engine, if_exists='append')
-#    t_end = time()
-#    print("Inserted another chunk, took %.3f Second' %(t_end - t_start))
-#    
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser(description="Ingest PARQUET Files to Postgres")
+    # User, Password, Host, Database Name, Table Name and URL of the csv
 
-#%%
-# WORKING WITH PARQUET:
+    parser.add_argument("--user", help="user name for postgres")
+    parser.add_argument("--password", help="password for postgres")
+    parser.add_argument("--host", help="host for postgres")
+    parser.add_argument("--port", help="port for postgres")
+    parser.add_argument("--db", help="database name for postgres")
+    parser.add_argument("--table_name", help="name of the table to Insert")
+    parser.add_argument("--url", help="url of the PARQUET file")
 
-#Forcing the creation of the table using head
-df.head(n=0).to_sql(name='yellow_taxi_data', con=engine, if_exists='replace')
-
-#%%
-# Append the Parquet file to database
-df.to_sql(name='yellow_taxi_data', con=engine, if_exists='append')
+    args = parser.parse_args()
+    main(args)
 
 
