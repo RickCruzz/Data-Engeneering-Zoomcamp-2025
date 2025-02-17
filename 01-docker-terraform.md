@@ -11,3 +11,18 @@
 
 ### Dockerfile
 - Instructions for what your Image will be depending on like Pandas, Requests or other librarys if you want to create a python like image.
+
+
+### Main Commands
+- docker run -it "IMAGE_NAME" (interactive mode)
+- docker ps (Shows all running images)
+Example: Running postgres image:
+```
+docker run -it \
+  -e POSTGRES_USER="root" \
+  -e POSTGRES_PASSWORD="root" \
+  -e POSTGRES_DB="ny_taxi" \
+  -v $(pwd)/ny_taxi_postgres_data:/var/lib/postgresql/data \
+  -p 5432:5432 \
+  postgres:13
+``` 
