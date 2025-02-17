@@ -67,7 +67,8 @@ docker run -it \
 - Maybe you need to remove the older Container try with: ``` docker rm <container_name_or_id> ``` 
 
 
-After configuring the .py file to run as a image builded with dockerfile we can use this:
+After configuring the .py file to run as a image builded with dockerfile we can use this to build:
+``` docker build -t taxi_ingest:v001 . ``` And this to run:
 ```
 URL="https://d37ci6vzurychx.cloudfront.net/trip-data/yellow_tripdata_2021-01.parquet"
 docker run -it --network=pg-network \
@@ -78,5 +79,12 @@ docker run -it --network=pg-network \
   --port=5432 \
   --db=ny_taxi \
   --table_name=yellow_taxi_trips \
+  --file_format=parquet \
   --url=${URL}
 ```
+
+
+### Using Docker-Compose
+Docker compose is a utility that help to build share and run complex setups, like instead of opening multiple terminals to run the steps before, we can create a simple file that will run everything on fly.
+
+Tip: ``` docker-compose up -d ``` for detached mode
