@@ -53,3 +53,4 @@ df.head(n=0).to_sql(name='yellow_taxi_data', con=engine, if_exists='replace')
 # Append the Parquet file to database
 df.to_sql(name='yellow_taxi_data', con=engine, if_exists='append')
 
+
