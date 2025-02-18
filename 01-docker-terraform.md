@@ -105,7 +105,13 @@ Tip: ``` docker-compose up -d ``` for detached mode
 - Manage resources not defined in your terraform File
 
 ### Key Commands
+- ``` terraform fmt ``` -> Format the .tf files
 - ``` terraform init ``` -> Get me the providers I need
 - ``` terraform plan ``` -> What I'm about to do?
 - ``` terraform apply ``` -> Do what is planned in the Terraform file
 - ``` terraform destroy ``` - Remove everything defined in the Terraform File
+
+### How to proceed?
+In this process we are using GCP in order to achieve all the requirements by the course.
+- Create a Service Account -> IAM -> Service Accounts -> Create
+- Generate a Key -> Service Account -> Create Key -> Its gonna download a JSON File.
