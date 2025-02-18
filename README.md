@@ -29,7 +29,7 @@ Here I'm going to take notes on everything to documentate and generate Keynotes 
 
 ### **Modules**
 
-#### [Module 1: Containerization and Infrastructure as Code](01-docker-terraform.md)
+#### [Module 1: Containerization and Infrastructure as Code](01-docker-terraform.md) 
 - Docker and Docker Compose
 - Running PostgreSQL with Docker
 - Introduction to GCP
