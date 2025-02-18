@@ -115,3 +115,5 @@ Tip: ``` docker-compose up -d ``` for detached mode
 In this process we are using GCP in order to achieve all the requirements by the course.
 - Create a Service Account -> IAM -> Service Accounts -> Create
 - Generate a Key -> Service Account -> Create Key -> Its gonna download a JSON File.
+
+We can Setup the Key as a variable as: GOOGLE_CREDENTIALS='$location$'
