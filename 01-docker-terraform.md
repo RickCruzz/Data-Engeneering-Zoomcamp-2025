@@ -88,3 +88,24 @@ docker run -it --network=pg-network \
 Docker compose is a utility that help to build share and run complex setups, like instead of opening multiple terminals to run the steps before, we can create a simple file that will run everything on fly.
 
 Tip: ``` docker-compose up -d ``` for detached mode
+
+
+## Terraform
+
+### Why?
+- Infrastrucutre as Code (IaC)
+- Simplicity in keep Track of Infrastructure
+- Easier collaboration -> Push to Git Repos and run changes
+- Reproducibility -> Quickly way to create same Infrastructures just changing few parameters
+- Ensure resources are removed
+
+### What Terraform is not?
+- Manage and update code on Infrastrucutre
+- Give the ability to change the immutable resources
+- Manage resources not defined in your terraform File
+
+### Key Commands
+- ``` terraform init ``` -> Get me the providers I need
+- ``` terraform plan ``` -> What I'm about to do?
+- ``` terraform apply ``` -> Do what is planned in the Terraform file
+- ``` terraform destroy ``` - Remove everything defined in the Terraform File
