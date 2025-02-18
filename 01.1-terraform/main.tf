@@ -9,14 +9,18 @@ terraform {
 
 provider "google" {
   # Configuration options
-  credentials = "./keys/credentials.json"
-  project     = "zoomcamp-2025-451318"
-  region      = "us-central1"
+  project = var.project
+  region  = var.region
 }
 
 resource "google_storage_bucket" "demo-bucket" {
-  name          = "demo-bucket-zoomcamp-2025"
-  location      = "US"
+  name          = var.gcs_bucket_name
+  storage_class = var.gcs_storage_class
+  location      = var.location
   force_destroy = true
+}
 
+resource "google_bigquery_dataset" "demo-dataset" {
+  dataset_id = var.bq_dataset_name
+  location = var.location
 }
