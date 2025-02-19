@@ -15,12 +15,12 @@ variable "location" {
 
 variable "bq_dataset_name" {
   description = "BigQuery Dataset Name"
-  default     = "demo_dataset"
+  default     = "ny_taxis_zoomcamp_2025"
 }
 
 variable "gcs_bucket_name" {
   description = "Bucket Name"
-  default     = "demo-bucket-zoomcamp-2025"
+  default     = "ny-taxis-bucket-zoomcamp-2025"
 }
 
 variable "gcs_storage_class" {
