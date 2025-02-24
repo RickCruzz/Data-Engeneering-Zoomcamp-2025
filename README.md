@@ -29,19 +29,19 @@ Here I'm going to take notes on everything to documentate and generate Keynotes 
 
 ### **Modules**
 
-#### [Module 1: Containerization and Infrastructure as Code](01-docker-terraform.md) 
+#### [Module 1: Containerization and Infrastructure as Code](/Lessons/01-Docker-Terraform/01-docker-terraform.md) 
 - Docker and Docker Compose
 - Running PostgreSQL with Docker
 - Introduction to GCP
 - Infrastructure setup with Terraform
 - Homework
 
-#### [Module 2: Workflow Orchestration](02-workflow-orchestration/)
+#### [Module 2: Workflow Orchestration](/Lessons/02-Kestra-FlowOrchestration/02-Kestra.md) 
 - Data Lakes and Workflow Orchestration
 - Workflow orchestration with Kestra
 - Homework
 
-#### [Workshop 1: Data Ingestion](cohorts/2025/workshops/dlt/README.md)
+#### [Workshop 1: Data Ingestion](/Workshops/01-data-ingestion-dlt/dlt.md)
 - API reading and pipeline scalability
 - Data normalization and incremental loading
 - Homework
