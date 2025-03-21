@@ -84,7 +84,7 @@ After this you can quickly connect using: ``` ssh de-zoomcamp ```
     * Search for the one option with **docker-compose-linux-x86_64** and copy the link
     * Go to your VM machine via Terminal and let's create the bin folder with ``` cd ~ ``` and then ``` mkdir bin ```
     * Enter the folder ``` cd bin ``` and download the file with ``` wget $LINK_COPIED$ -O docker-compose```
-    * Lets make sure its a Executable file running ``` chmo d +x docker-compose ```
+    * Lets make sure its a Executable file running ``` chmod +x docker-compose ```
     * You can check with ``` ./docker-compose version ```
 
 - Adding Docker-Compose on the PATH variable:
